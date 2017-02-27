@@ -1,3 +1,9 @@
+# NOTE: 
+This repo is the updated version of the original alertify.js 
+See : https://github.com/fabien-d/alertify.js/pull/267
+Original Work Done Here: https://github.com/Kambaa/alertify.js/tree/0.3
+
+
 [![build status](https://secure.travis-ci.org/fabien-d/alertify.js.png)](http://travis-ci.org/fabien-d/alertify.js)
 
 Alertify is an unobtrusive customizable JavaScript notification system.
