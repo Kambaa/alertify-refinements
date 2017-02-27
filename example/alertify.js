@@ -85,7 +85,6 @@
 		 * @type {Object}
 		 */
 		_alertify = {
-
 			/**
 			 * Labels object
 			 * @type {Object}
@@ -118,6 +117,11 @@
 			 * @type {[type]}
 			 */
 			transition : undefined,
+
+			/**
+			 * unique id of the newly opened log
+			 */
+		 	uniqueId : null,
 
 			/**
 			 * Set the proper button click events
@@ -293,6 +297,8 @@
 					break;
 				}
 
+
+
 				elDialog.className = "alertify alertify-" + type + " " + css;
 				elCover.className  = "alertify-cover";
 				return html;
@@ -398,6 +404,7 @@
 				return;
 			},
 
+
 			/**
 			 * Create a dialog box
 			 *
@@ -495,6 +502,7 @@
 				document.createElement("nav");
 				document.createElement("article");
 				document.createElement("section");
+				
 				// cover
 				if ($("alertify-cover") == null) {
 					elCover = document.createElement("div");
@@ -548,7 +556,6 @@
 				// initialize alertify if it hasn't already been done
 				this.init();
 				check();
-
 				elLog.className = "alertify-logs";
 				this.notify(message, type, wait, clickToClose);
 				return this;
@@ -567,7 +574,8 @@
 			 */
 			notify : function (message, type, wait, clickToClose) {
 				var log = document.createElement("article");
-				log.className = "alertify-log" + ((typeof type === "string" && type !== "") ? " alertify-log-" + type : " alertify-log-"+Math.floor((Math.random() * 100) + 1));
+				this.uniqueId = Math.floor((Math.random() * 100) + 1);
+				log.className = "alertify-log" + ((typeof type === "string" && type !== "") ? " alertify-log-" + type : " alertify-log-"+this.uniqueId);
 				log.innerHTML = message;
 				// append child
 				elLog.appendChild(log);
@@ -677,7 +685,9 @@
 			set     : function (args) { _alertify.set(args); },
 			closeNow: function (className) { _alertify.closeNow(className); },
 			labels  : _alertify.labels,
-			debug   : _alertify.handleErrors
+			debug   : _alertify.handleErrors,
+			getUniqueId : function(){return _alertify.uniqueId;},
+			closeInstance : function(){_alertify.closeNow(_alertify.uniqueId);}
 		};
 	};
 

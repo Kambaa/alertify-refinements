@@ -202,10 +202,8 @@
 
 		var x = alertify.log("Will stay until clicked", "", 0);
 		$('#closeFromApi').on('click',function(){
-			x.closeNow("show");
-		})
-
-
+			x.closeInstance();
+		});
 	</script>
 
 </body>
